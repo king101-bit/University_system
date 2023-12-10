@@ -55,8 +55,8 @@ university_programs = {
     20: "Social Sciences"
 }
 
-programs = {
-    1: "Undergraduate",
+degrees = {
+    1: "BsC",
     2: "Master's Degree",
     3: "PhD"
 }
@@ -74,16 +74,16 @@ while course_id not in university_courses:
         print(f"Invalid course id. Please select from the following ids: {', '.join(map(str, university_courses.keys()))}")
 
 selected_program_id = 0
-while selected_program_id not in programs:
+while selected_program_id not in degrees:
     print("\nList of Programs:")
-    for program_id, program in programs.items():
+    for program_id, program in degrees.items():
         print(f"{program_id}: {program}")
     
     selected_program_id = int(input("\nPlease enter the program id: "))
-    if selected_program_id in programs:
-        print(f"You have selected {programs[selected_program_id]}")
+    if selected_program_id in degrees:
+        print(f"You have selected {degrees[selected_program_id]}")
     else:
-        print(f"Invalid program id. Please select from the following ids: {', '.join(map(str, programs.keys()))}")
+        print(f"Invalid program id. Please select from the following ids: {', '.join(map(str, degrees.keys()))}")
 
 if selected_program_id == 1:
     print(f"Go to the Undergraduate's hall")
