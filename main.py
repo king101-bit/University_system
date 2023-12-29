@@ -1,6 +1,16 @@
 import sys
+print(f"Welcome to the university system\n")
+
 name = str(input("What's your name?\n"))
 print(f"Hello", name)
+
+user_state = str(input("Are you registering or logging in?\n"))
+if user_state == "registering":
+    print(f"Answer the following questions\n")
+else:
+    print(f"Welcome back {name}")
+
+
 age = int(input("How old are you?\n"))
 
 if age >= 15:
@@ -9,6 +19,12 @@ else:
     print(f"Sorry {name}, you are too young to join us!")
     sys.exit()
 
+matric_number = int(input("What is your matric number?\n"))
+print(f"Are you sure this is your Matric number? {matric_number}?")
+if matric_number == "":
+    print(f"You may proceed...")
+else:
+    print(f"Incorrect!")
 university_courses = {
     1: "Introduction to Computer Science",
     2: "Calculus I",
