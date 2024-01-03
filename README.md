@@ -18,6 +18,11 @@ python3 main.py
 ```
 ![Zack_Terminal](image.png)
 
+## Flowchart
+It just shows the code in a procedural way and how it works in the form of steps.
+
+![Flow chart](image-1.png)
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
