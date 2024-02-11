@@ -1,30 +1,23 @@
 import sys
-print(f"Welcome to the university system\n")
+import csv
+import sha256
+import os
+import openpyxl
 
-name = str(input("What's your name?\n"))
-print(f"Hello", name)
+def register():
+    name = input(f"Enter your new account name: \n")
+    newpw = input(f"Create your password: \n")
+    newpw_hash = sha256.sha256(newpw.encode('utf-8')).hexdigest()
+    age = int(input("How old are you?\n"))
 
-user_state = str(input("Are you registering or logging in?\n"))
-if user_state == "registering":
-    print(f"Answer the following questions\n")
-else:
-    print(f"Welcome back {name}")
-
-
-age = int(input("How old are you?\n"))
-
-if age >= 15:
-    print(f"Welcome {name}!")
-else:
-    print(f"Sorry {name}, you are too young to join us!")
-    sys.exit()
-
-matric_number = int(input("What is your matric number?\n"))
-print(f"Are you sure this is your Matric number? {matric_number}?")
-if matric_number == "":
-    print(f"You may proceed...")
-else:
-    print(f"Incorrect!")
+    if age >= 15:
+        print(f"Welcome {name}!")
+    
+    else:
+         print(f"Sorry {name}, you are too young to join us!")
+         sys.exit()
+    
+    
 university_courses = {
     1: "Introduction to Computer Science",
     2: "Calculus I",
@@ -109,3 +102,39 @@ elif selected_program_id == 2:
 
 elif selected_program_id == 3:
     print(f"Go to K.A Stroud's hall")
+
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.append([name, newpw_hash, age])
+    workbook.save("student_info.xlsx")
+   
+def login():
+    # Load Excel
+    workbook = openpyxl._workbook("student_info.xx")
+    sheet = workbook.active
+
+    name = str(input(f"Your registered name: \n"))
+    pw = str(input(f"Your password: \n"))
+    pw_hash = sha256.sha256(pw.encode('utf-8')).hexdigest()
+
+    for row in sheet.iter_rows(values_only=True):
+        reg_name, reg_pass, _ = row
+        if pw_hash == reg_pass and name == reg_name:
+            print(f"Hey {name}. Welcome to the university system")
+            return
+
+    print(f"The login details are not valid.")
+
+no_account = True
+while no_account:
+    k = ""
+    while k == "":
+        k = input("Would you like to register a new account? y/n \n")
+        if k == "y":
+            register()
+            no_account = False
+        elif k == "n":
+            login()
+            no_account = False
+        else:
+            k = ""
