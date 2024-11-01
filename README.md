@@ -9,6 +9,7 @@ Clone the repository
 ```bash
 git clone github.com/king101-bit/university-system
 cd university_system/university_system
+pip3 install -r requirements.txt
 ```
 
 ## Usage
